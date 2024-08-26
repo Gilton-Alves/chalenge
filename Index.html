@@ -1,54 +1,42 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>decodificador de texto - Alura ONE</title>
-  <link rel="icon" href="./imagens/ico topo.png">
-  <link rel="stylesheet" type="text/css" href="./style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Decodificador de Texto</title>
+    <link rel="stylesheet" href="style/style.css">
+    
 </head>
-<body class="principal">
-  <header>
-    <h1 class="titulo__alura"><img src="./imagens/fundo.png"   width="60" height="80" alt="programa one" >Seja Bem Vindo ao Decodificador de Texto - Programa ONE</h1>
-  </header>
-
-  <main>
-    <section class="area-texto">
-      <div class="texto">
-        <textarea id="texto-inserido" name="caixatexto" value="" rows="4" cols="33" maxlength="140" placeholder="Digite o texto aqui!"></textarea>
-      </div>
-
-      <div class="obs">
-        <img src="./imagens/alert.png" height="20"  alt="info">
-        <p>Apenas letras minúsculas e sem acento.</p>
-      </div>
-      
-      <div class="botoes">
-        <button id="botao-cripto" onclick="Criptografar()" type="text" name="criptografar"><img src="./imagens/padlock.svg" height="20"> Criptografar</button>
-        <button id="botao-descripto" onclick="Descriptografar()" type="text" name="descriptografar"><img src="./imagens/ico.png" height="20"> Descriptografar</button>
-      </div>
-    </section>
-
-    <section class="barra-lateral">
-      <div class="info">
-        <div class="bloco">
-          <img id="imagem" src="./imagens/erro.gif" alt="nenhuma mensagem encontrada">
-          <h3 id="campo">Nenhuma mensagem encontrada</h3>
-          <p id="texto-trocar">Digite um texto que você deseja criptografar ou descriptografar.</p>
-        </div>
-        <div id="adicionar-botao" style="display: none;">
-          <button id="botao-copiar" onclick="CopiarTexto()" type="text" name="copiar"> Copiar </button>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <script src="./script.js"></script>
-
-  <footer>
-    <a href="https://github.com/Gilton-Alves" target="_blank"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" height="40px"></a>
-    <a href="https://github.com/Gilton-Alves" target="_blank"><p>Desenvolvido por Gilton Alves - 2024</p></a>
-  </footer>
+<body>
+    <main>
+        <header>
+            <img class="alura__logo" src="/imagens/ico.png" alt="letra g"><h1 class="titulo">Challenge Decodificador de Texto</h1>
+        </header>
+            <textarea class="decodificador__texto" type="text" placeholder="Digite seu texto"></textarea>
+            <section class="area__botoes">
+                <p class="texto__aviso"> 
+                    <img class="icone__exclamacao" src="/imagens/alert.png" alt="alerta"> Apenas letras minúsculas e sem acento.
+                </p>
+                <button class="botao" id="botao__criptografar" type="button" onclick="criptografarTexto()"><img src="/imagens/lock.png" height="15"> Criptografar</button>
+                <button class="botao" id="botao__descriptografar" type="button" onclick="descriptografarTexto()"><img src="/imagens/unlock.png" height="15"> Descriptografar</button>
+            </section>
+            <section class="area__decodificacao">
+                <img class="imagem__personagem" src="/imagens/img.png" alt="imagem do gilton desenvolvedor">
+                <p class="notificacao__texto">Nenhuma mensagem encontrada</p>
+                <p class="texto__decodificado" name="texto">Insira um texto que você deseja criptografar ou descriptografar</p>
+                <button class="botao__oculto" id="botao__copiar" type="button">Copiar</button>
+            </section>
+            
+    </main>
+        <footer class="rodape">
+            <p class="texto__rodape">Criado por Gilton Alves - 2024    |   Social: </p>
+            <a class="link__contato" href="https://github.com/Gilton-Alves/" target="_blank">
+                <img src="/imagens/github-icon.png" alt="ícone do github">
+            </a>
+            <a class="link__contato" href="https://www.linkedin.com/in/gilton-alves10/" target="_blank">
+                <img src="/imagens/linkedin-icon.png" alt="ícone do linkedin">
+            </a>
+        </footer>
+    <script src="/script.js"></script>
 </body>
 </html>

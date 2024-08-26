@@ -1,50 +1,107 @@
-function Criptografar() {
-   
-    var texto = document.getElementById("texto-inserido").value  
-    
-    
-    texto = texto.replace(/e/g,'enter') 
-    texto = texto.replace(/i/g, 'imes')
-    texto = texto.replace(/a/g, 'ai')
-    texto = texto.replace(/o/g, 'ober') 
-    texto = texto.replace(/u/g, 'ufat') 
-   
-   
-    var conteudoCaixa = document.getElementById("texto-trocar");
+document.addEventListener('DOMContentLoaded', function() {
+  let textoExibido = document.getElementsByClassName('notificacao__texto')[0];
+  let textoAviso = document.getElementsByClassName('texto__aviso')[0];
+  const elemento = document.getElementById('botao__copiar');
   
-    conteudoCaixa.innerHTML = texto;
-    
+  let jaFoiExibido = false;
+      function mostrarUmaVez() {
+          
+          if (!jaFoiExibido) {
+              elemento.classList.remove('botao__oculto'); 
+              jaFoiExibido = true;
+      }
+  }
+
+
+
+
+  document.getElementById('botao__copiar').addEventListener('click', function() {
+            const texto = document.getElementsByClassName('notificacao__texto')[0].innerText;
+      
+      
+            navigator.clipboard.writeText(texto).then(() => {
+          alert('Texto copiado para a área de transferência!');
+      }).catch(err => {
+          console.error('Falha ao copiar: ', err);
+      });
+  });
+
+
+  function validarTexto(texto) {
+      if (!/^[a-z\s]+$/.test(texto)) {
+          return alert("Apenas letras minúsculas e sem acento.");
+      }
+      return null;
+  };
+
+
+function criptografarTexto() {
+  let textoDigitado = document.getElementsByClassName('decodificador__texto')[0].value;
+  let textoString = textoDigitado.toString();
   
-    document.getElementById("imagem").style.display = "none";
-    document.getElementById("campo").style.display = "none";
-    document.getElementById("adicionar-botao").style.display = "flex";
+  let erro = validarTexto(textoString);
+  if (erro) {
+      textoAviso.innerHTML = erro;
+      return;
   }
   
-  function Descriptografar() {
-   
-    var texto = document.getElementById("texto-inserido").value  
-    
-    texto = texto.replace(/enter/g,'e') 
-    texto = texto.replace(/imes/g, 'i')
-    texto = texto.replace(/ai/g, 'a')
-    texto = texto.replace(/ober/g, 'o') 
-    texto = texto.replace(/ufat/g, 'u') 
-   
-    
-    var conteudoCaixa = document.getElementById("texto-trocar");
+  document.getElementsByClassName("imagem__personagem")[0].style.display = "none";
+  document.getElementsByClassName("texto__decodificado")[0].style.display = "none";
   
-    
-    conteudoCaixa.innerHTML = texto;
-    
-   
-    document.getElementById("imagem").style.display = "none";
-    document.getElementById("campo").style.display = "none";
-    document.getElementById("adicionar-botao").style.display = "flex";
-  }
   
- 
-  document.getElementById('botao-copiar').addEventListener('click', copiarClipboard);
-  async function copiarClipboard () {
-    var textoCopiado = document.querySelector('#texto-trocar').textContent;
-    await navigator.clipboard.writeText(textoCopiado);
+      let textoCriptografado = 
+          textoString.replace(/e/g, "enter")
+                      .replace(/i/g, "imes")
+                      .replace(/a/g, "ai")
+                      .replace(/o/g, "ober")
+                      .replace(/u/g, "ufat");
+
+      textoExibido.innerHTML = textoCriptografado;
+      mostrarUmaVez()
+      return textoCriptografado;
   }
+
+
+function descriptografarTexto() {
+  let textoDigitado = document.getElementsByClassName('decodificador__texto')[0].value;
+  let textoString = textoDigitado.toString();
+      
+  let erro = validarTexto(textoString);
+  if (erro) {
+      textoAviso.innerHTML = erro;
+      return;
+  }
+
+  document.getElementsByClassName("imagem__personagem")[0].style.display = "none";
+  document.getElementsByClassName("texto__decodificado")[0].style.display = "none";
+
+
+   const mapeamento = {
+      "enter": "e",
+      "imes": "i",
+      "ai": "a",
+      "ober": "o",
+      "ufat": "u"
+  };
+
+  let textoDescriptografado = textoString;
+
+  for (const [key, value] of Object.entries(mapeamento)) {
+      textoDescriptografado = textoDescriptografado.split(key).join(value);
+  }
+      textoExibido.innerHTML = textoDescriptografado;
+      return textoDescriptografado;
+  }    
+
+document.getElementById('botao__criptografar').onclick = criptografarTexto;
+document.getElementById('botao__descriptografar').onclick = descriptografarTexto;
+});
+
+
+
+
+
+
+
+
+
